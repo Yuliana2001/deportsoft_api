@@ -1,0 +1,60 @@
+﻿@page
+@model deportsoft_api.Pages.UsuariosModel
+@{
+}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="~/css/estiloAdmin.css" asp-append-version="true" />
+
+
+</head>
+
+
+<input type="checkbox" id="check">
+<label for="check">
+    <i class="fa fa-bars" id="okbutton"></i>
+    <i class="fa fa-times" id="cancelbutton"></i>
+</label>
+
+
+<h2 class="text-center">Usuarios</h2>
+<table class="table">
+    <tr>
+        <th>Cedula</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Email</th>
+        <th>Teléfono</th>
+        <th>Dirección</th>
+        <th>Estado</th>
+        <th>Creado en</th>
+
+    </tr>
+    @foreach (var user in Model.ApplicationUsers)
+    {
+        <tr>
+            <td>@user.Cedula</td>
+            <td>@user.FirstName</td>
+            <td>@user.LastName</td>
+            <td>@user.Email</td>
+            <td>@user.PhoneNumber</td>
+            <td>@user.Address</td>
+            <td class="@(user.Estado == "Inactivo" ? "estado-inactivo" : "")">@user.Estado</td>
+
+
+            <td>@user.CreateAt.ToString("MM/dd/yyyy")</td>
+            <td></td>
+            <td style="white-space:nowrap">
+                <a class="btn btn-primary btn-sm" href="/DeleteUser?id=@user.Id">Eliminar</a>
+                <a class="btn btn-primary btn-sm" href="/EditUsuarios?id=@user.Id">Editar</a>
+
+            </td>
+        </tr>
+    }
+
+
+</table>

@@ -1,0 +1,39 @@
+﻿@page
+@model deportsoft_api.Pages.VerRutinasIdModel
+@{
+}
+<h1>Ver rutinas programadas</h1>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0" />
+    <title>Consulta tus rutinas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="~/css/estiloAdmin.css" asp-append-version="true" />
+
+</head>
+
+<table class="table">
+    <tr>
+        <th>Nombre</th>
+        <th>Descripción</th>
+        <th>Duracion</th>
+        <th>Nivel</th>
+        <th>Foto</th>
+        <th>Fecha de creación</th>
+    </tr>
+    @foreach (var rutina in Model.Rutinas)
+    {
+        <tr>
+            <td>@rutina.Nombre</td>
+            <td>@rutina.Descripcion</td>
+            <td>@rutina.Duracion</td>
+            <td>@rutina.Nivel</td>
+            <td><img src="~/Rutina/@rutina.ImageFileName" alt="" width="80" height="80"></td>
+            <td>@rutina.CreatedAt</td>
+          <td style="white-space:nowrap">
+                <a class="btn btn-danger btn-sm" href="/DeleteRutina?id=@rutina.Id">Borrar</a>
+
+            </td>
+        </tr>
+    }

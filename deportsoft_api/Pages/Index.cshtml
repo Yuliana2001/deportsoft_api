@@ -1,0 +1,74 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+@using Microsoft.AspNetCore.Identity
+@using deportsoft_api.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="~/css/estiloAdmin.css" asp-append-version="true" />
+
+</head>
+
+<style>
+    body {
+        background-image: url('/Fondos/DeportSoft.jpg'); 
+        background-size: cover; /* Para cubrir todo el tamaño de la pantalla */
+        background-position: center; /* Para centrar la imagen */
+    }
+</style>
+
+
+
+@if (SignInManager.IsSignedIn(User))
+{
+    ApplicationUser applicationUser = (ApplicationUser)await UserManager.GetUserAsync(User);
+    if (User.IsInRole("client"))
+    {
+        <body>
+            <input type="checkbox" id="check">
+            <label for="check">
+                <i class="fa fa-bars" id="okbutton"></i>
+                <i class="fa fa-times" id="cancelbutton"></i>
+            </label>
+            <div class="SideBar">
+                <header>Menu</header>
+                <ul>
+                    <li><a href="/VerRutinasId"><i class="fas fa-search"></i>Consulta rutinas</a></li>
+                    <li><a href="/CreateRutina"><i class="fas fa-search"></i>Crear rutina</a></li>
+
+                </ul>
+                <section>
+                </section>
+            </div>
+        </body>
+    }
+    else if (User.IsInRole("admin"))
+    {
+        <body>
+            <input type="checkbox" id="check">
+            <label for="check">
+                <i class="fa fa-bars" id="okbutton"></i>
+                <i class="fa fa-times" id="cancelbutton"></i>
+            </label>
+            <div class="SideBar">
+                <header>Menu</header>
+                <ul>
+                    <li><a href="/Usuarios"><i class="fa-file-signature"></i>Ver usuarios</a></li>
+
+                </ul>
+                <section>
+                </section>
+            </div>
+        </body>
+    }
+}

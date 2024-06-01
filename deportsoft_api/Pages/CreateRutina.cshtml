@@ -1,0 +1,62 @@
+﻿@page
+@model deportsoft_api.Pages.CreateRutinaModel
+
+@{
+    ViewData["Title"] = "CreateRutina";
+}
+
+<h1>Crear RutinaDto</h1>
+
+<h4>RutinaDto</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="RutinaDto.Nombre" class="control-label"></label>
+                <input asp-for="RutinaDto.Nombre" class="form-control" />
+                <span asp-validation-for="RutinaDto.Nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RutinaDto.Descripcion" class="control-label"></label>
+                <input asp-for="RutinaDto.Descripcion" class="form-control" />
+                <span asp-validation-for="RutinaDto.Descripcion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 col-form-label">Duración (min)</label>
+                <input asp-for="RutinaDto.Duracion" class="form-control" />
+                <span asp-validation-for="RutinaDto.Duracion" class="text-danger"></span>
+            </div>
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">Nivel</label>
+                <div class="col-sm-8">
+                    <select class="form-select" asp-for="RutinaDto.Nivel">
+                        <option value="Bajo">Bajo</option>
+                        <option value="Medio">Medio</option>
+                        <option value="Alto">Alto</option>
+
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="RutinaDto.ImageFile" class="control-label"></label>
+                <input asp-for="RutinaDto.ImageFile" class="form-control" type="file" />
+                <span asp-validation-for="RutinaDto.ImageFile" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Regresar</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

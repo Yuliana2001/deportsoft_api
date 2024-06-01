@@ -1,0 +1,34 @@
+﻿@page
+@model deportsoft_api.Pages.DeleteDeportistModel
+
+@{
+    ViewData["Title"] = "DeleteDeportist";
+}
+
+<h1>DeleteDeportist</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Deportist</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Deportist.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Deportist.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Deportist.Estado)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Deportist.Estado)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Deportist.Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>
